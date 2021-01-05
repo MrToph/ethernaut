@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { Contract, Signer } from "ethers";
 import { ethers } from "hardhat";
+import { ETHERNAUT_ADDRESS, submitLevel } from "./utils";
 
 let accounts: Signer[];
 let eoa: Signer;
@@ -135,6 +136,6 @@ it("solves the challenge", async function () {
   tx = await challenge.authenticate(password)
   await tx.wait()
 
-  const isComplete = await challenge.getCleared();
-  expect(isComplete).to.be.true;
+  // can we call submit on ethernaut contract?
+  expect(await submitLevel(challenge.address), "level not solved").to.be.true
 });
