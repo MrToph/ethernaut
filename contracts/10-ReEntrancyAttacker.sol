@@ -34,7 +34,7 @@ contract ReentranceAttacker {
     }
 
     function callWithdraw() private {
-        // this one from the token contract updates after withdraw
+        // this balance correctly updates after withdraw
         uint256 challengeTotalRemainingBalance = address(challenge).balance;
         // are there more tokens to empty?
         bool keepRecursing = challengeTotalRemainingBalance > 0;

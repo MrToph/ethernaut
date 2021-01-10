@@ -1,6 +1,7 @@
 # ethernaut
 
 My solutions to [Ethernaut CTF](https://ethernaut.openzeppelin.com/).
+In-depth explanations for each level [can be read on my blog](https://cmichel.io/ethernaut-solutions/).
 
 ## Development
 
