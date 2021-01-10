@@ -15,13 +15,14 @@ cp .env.template .env
 # fill out
 ```
 
-Pick a mnemonic and use the resulting first ETH account as the challenger account on capture-the-ether.
+Pick a mnemonic and the resulting accounts will be used in the challenges.
 
 #### Hardhat
 
 This repo uses [hardhat](https://hardhat.org/) to run the CTF challenges.
 Challenges are implemented as hardhat tests in [`/test`](./test).
 
+The tests run on a local hardnet network but it needs to be forked from Rinkeby because it interacts with the challenge factory and submission contract.
 To fork the Rinkeby testnet, you need an archive URL like the free ones from [Alchemy](https://alchemyapi.io/).
 
 #### Running challenges
@@ -30,7 +31,5 @@ Optionally set the block number in the `hardhat.config.ts` hardhat network confi
 
 ```bash
 # fork rinkeby but run locally
-npx hardhat test test/warmup/call-me.ts
-# once everything works, run all txs on rinkeby testnet to gain points
-npx hardhat test test/warmup/call-me.ts --network rinkeby
+npx hardhat test test/0-hello.ts
 ```

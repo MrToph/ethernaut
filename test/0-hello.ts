@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { Contract, Signer } from "ethers";
 import { ethers } from "hardhat";
-import { ETHERNAUT_ADDRESS, submitLevel } from "./utils";
+import { createChallenge, submitLevel } from "./utils";
 
 let accounts: Signer[];
 let eoa: Signer;
@@ -109,9 +109,10 @@ const abi = [
 before(async () => {
   accounts = await ethers.getSigners();
   [eoa] = accounts;
+  const challengeAddress = await createChallenge(`0x4E73b858fD5D7A5fc1c3455061dE52a53F35d966`)
   challenge = await ethers.getContractAt(
     abi,
-    `0x682d9160E726C5d6c7A12a817294a22C19B57380`
+    challengeAddress,
   );
 });
 
@@ -135,7 +136,8 @@ it("solves the challenge", async function () {
 
   tx = await challenge.authenticate(password)
   await tx.wait()
+});
 
-  // can we call submit on ethernaut contract?
-  expect(await submitLevel(challenge.address), "level not solved").to.be.true
+after(async () => {
+  expect(await submitLevel(challenge.address), "level not solved").to.be.true;
 });
